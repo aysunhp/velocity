@@ -26,4 +26,4 @@ export const LOCALES = ['az', 'en', 'ru'] as const;
 export const DEFAULT_LOCALE = 'az';
 
 export const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  process.env.NEXT_PUBLIC_API_URL || 'https://velocity-backend-jqiu.onrender.com';
