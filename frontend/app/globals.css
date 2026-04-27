@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-midnight: #050608;
+  --color-midnight-700: #11141A;
+  --color-rich: #0d0d0d;
+  --color-gold: #d4af37;
+  --color-gold-light: #f5d27a;
+  --color-cream: #f5f1e8;
+  --color-platinum: #c9ccd1;
+  --color-marble: #fafafa;
+  --color-electric: #00b4d8;
+  --color-coral: #ff6b35;
+}
+
+@layer base {
+  * {
+    @apply border-platinum/10;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-midnight text-cream font-sans;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 175, 55, 0.08), transparent),
+      radial-gradient(ellipse 60% 50% at 90% 10%, rgba(0, 180, 216, 0.06), transparent);
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  ::selection {
+    background: rgba(212, 175, 55, 0.35);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-4 sm:px-6 lg:px-10 xl:px-16;
+  }
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+  .glass-dark {
+    @apply backdrop-blur-xl bg-midnight/60 border border-white/10;
+  }
+  .gold-text {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full
+           bg-gold-gradient text-rich font-semibold px-6 py-3
+           shadow-gold transition-transform duration-300
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-electric {
+    @apply inline-flex items-center justify-center gap-2 rounded-full
+           bg-btn-gradient text-white font-semibold px-6 py-3
+           shadow-glow transition-transform duration-300
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full
+           border border-white/15 text-cream/90 px-6 py-3
+           hover:bg-white/5 transition-colors;
+  }
+  .section {
+    @apply py-20 lg:py-28;
+  }
+  .heading-eyebrow {
+    @apply uppercase tracking-[0.3em] text-xs font-semibold text-gold/80;
+  }
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  @apply animate-pulse bg-white/[0.04] rounded-lg;
+}
+
+/* Form input */
+.select-input,
+.form-input {
+  @apply w-full px-3 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 text-sm text-cream outline-none focus:border-gold/40 transition placeholder:text-platinum/40;
+}
+.select-input option {
+  @apply bg-midnight text-cream;
+}
+
+/* Hide scrollbar (decorative) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
