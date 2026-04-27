@@ -39,8 +39,7 @@ export function Hero() {
         muted
         loop
         playsInline
-        preload="metadata"
-        poster="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2400&q=80"
+        preload="auto"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
         <source
