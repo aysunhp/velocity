@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
-import Link from 'next/link';
 import { useT } from '@/components/providers/LanguageProvider';
 
 const KEY = 'velocity:cookies-v1';
@@ -57,13 +56,7 @@ export function CookieBanner() {
             </span>
             <div>
               <h3 className="font-display text-lg leading-tight">{t.cookies.title}</h3>
-              <p className="text-platinum/70 text-sm mt-1">
-                {t.cookies.desc}
-                <Link href="/privacy" className="text-gold underline-offset-2 hover:underline">
-                  {t.cookies.policy}
-                </Link>
-                .
-              </p>
+              <p className="text-platinum/70 text-sm mt-1">{t.cookies.desc}</p>
               <div className="flex items-center gap-2 mt-4">
                 <button onClick={acknowledge} className="btn-gold text-xs px-4 py-2">
                   {t.cookies.ok}

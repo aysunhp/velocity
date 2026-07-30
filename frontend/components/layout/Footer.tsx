@@ -33,7 +33,6 @@ export function Footer() {
         { label: t.footer.howItWorks, href: '/#how-it-works' },
         { label: t.footer.faq, href: '/#faq' },
         { label: t.footer.insurance, href: '/services' },
-        { label: t.footer.privacy, href: '/privacy' },
       ],
     },
   ];
