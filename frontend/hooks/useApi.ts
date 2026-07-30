@@ -4,12 +4,13 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   carsApi,
   categoriesApi,
+  contactApi,
   reviewsApi,
   faqsApi,
   blogApi,
   bookingsApi,
 } from '@/lib/api';
-import type { Booking, CarsQuery } from '@/types';
+import type { Booking, CarsQuery, ContactMessage } from '@/types';
 
 export const useFeaturedCars = () =>
   useQuery({
@@ -52,6 +53,11 @@ export const useBlogs = (params: { page?: number; limit?: number } = {}) =>
   useQuery({
     queryKey: ['blogs', params],
     queryFn: async () => blogApi.list(params),
+  });
+
+export const useSendContactMessage = () =>
+  useMutation({
+    mutationFn: (payload: ContactMessage) => contactApi.send(payload).then((r) => r.data),
   });
 
 export const useCreateBooking = () => {

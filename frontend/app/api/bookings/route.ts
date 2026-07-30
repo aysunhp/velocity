@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { cars } from '@/lib/server/data';
+import { bookingEmail, sendEmail } from '@/lib/server/mailer';
 import { created, fail } from '@/lib/server/response';
 import { findOne } from '@/lib/server/store';
 
@@ -54,10 +55,14 @@ export async function POST(request: Request) {
     createdAt: new Date().toISOString(),
   };
 
-  // No datastore on this deployment — the request is logged so it shows up in
-  // the hosting provider's function logs. Wire up a mailer or DB here to
-  // persist/notify (see `backend/src/services/bookingService.js`).
-  console.log('[booking]', JSON.stringify({ ...booking, car: car.name }));
+  // The Express version fires the email and ignores failures, because Mongo
+  // still holds the booking. There is no datastore here, so the email *is* the
+  // record — a silent failure would drop the request entirely, and the visitor
+  // would sit waiting for a reply that never comes.
+  const delivered = await sendEmail(bookingEmail(booking, car));
+  if (!delivered) {
+    return fail(502, 'Booking could not be submitted. Please call or use WhatsApp.');
+  }
 
   return created(booking);
 }

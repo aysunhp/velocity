@@ -83,12 +83,13 @@ velocity/
 | GET · GET `featured` · POST | `/api/reviews` | list / featured / create |
 | GET · GET `:slug` · POST | `/api/blogs` | list / detail / create |
 | GET · POST | `/api/faqs` | list / create |
+| POST | `/api/contact` | validates and emails a contact message (route handlers only) |
 
 All list endpoints return `{ success, data, meta: { total, page, limit, totalPages } }`.
 
 The read endpoints and `POST /api/bookings` are implemented twice, against one shared response contract: once in `backend/` (Express) and once in `frontend/app/api` (route handlers). The admin write endpoints exist only in the Express backend.
 
-`POST /api/bookings` in the route-handler version validates, prices the booking and logs it to the function log — it does not persist or email. Use the Express backend for that.
+`POST /api/contact` and `POST /api/bookings` email the submission (nodemailer, `SMTP_*` env vars) and hold no datastore, so the email *is* the record. When SMTP is unconfigured or delivery fails they answer `502` rather than a success the visitor would act on — the submission is logged either way. `POST /api/contact` exists only in the route-handler version.
 
 ## Using the Express backend
 
@@ -132,6 +133,13 @@ That's it — no controller, service or route changes required. The repository f
 | Var | Default | Purpose |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | used for sitemap/robots/canonical |
+| `SMTP_HOST` | — | e.g. `smtp.gmail.com`. **Unset means no mail is sent** and `/api/contact` + `/api/bookings` answer `502` |
+| `SMTP_PORT` | `587` | `465` switches to implicit TLS |
+| `SMTP_USER`, `SMTP_PASS` | — | for Gmail, `SMTP_PASS` must be an [App Password](https://myaccount.google.com/apppasswords) (needs 2FA), not the account password |
+| `MAIL_FROM` | `Velocity <SMTP_USER>` | envelope sender |
+| `MAIL_TO` | `SMTP_USER` | where contact messages and bookings land |
+
+The `SMTP_*` vars are read server-side only — deliberately **not** `NEXT_PUBLIC_`, which would ship the password to every visitor's browser. Set them in the host's dashboard, never in a committed file.
 | `NEXT_PUBLIC_WHATSAPP` | `994501112233` | floating WhatsApp number (no `+`) |
 | `NEXT_PUBLIC_PHONE` | `+994501112233` | floating call CTA |
 | `NEXT_PUBLIC_EMAIL` | `concierge@velocity.az` | footer/contact |

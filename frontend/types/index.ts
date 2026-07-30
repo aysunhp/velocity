@@ -116,6 +116,13 @@ export interface BlogPost {
   updatedAt?: string;
 }
 
+export interface ContactMessage {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export interface Faq {
   _id: ID;
   question: string;

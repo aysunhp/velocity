@@ -1,14 +1,26 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { AlertCircle, Mail, Phone, MapPin, Clock, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { CONTACT } from '@/lib/constants';
+import { useSendContactMessage } from '@/hooks/useApi';
 import { useT } from '@/components/providers/LanguageProvider';
 
 export default function ContactPage() {
-  const [sent, setSent] = useState(false);
+  const mutation = useSendContactMessage();
   const t = useT();
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+
+  const onChange =
+    (k: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((s) => ({ ...s, [k]: e.target.value }));
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutation.mutate(form);
+  };
 
   return (
     <main className="pt-32 pb-24">
@@ -57,13 +69,10 @@ export default function ContactPage() {
 
           {/* Form */}
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
+            onSubmit={submit}
             className="glass-dark rounded-2xl p-6 lg:p-8 border border-gold/15 space-y-4 self-start"
           >
-            {sent ? (
+            {mutation.isSuccess ? (
               <div className="text-center py-12 space-y-3">
                 <CheckCircle2 className="text-emerald mx-auto" size={48} />
                 <h3 className="font-display text-2xl">{t.contact.sent}</h3>
@@ -74,20 +83,57 @@ export default function ContactPage() {
                 <h2 className="font-display text-2xl">{t.contact.formTitle}</h2>
                 <div className="grid sm:grid-cols-2 gap-3">
                   <Field label={t.contact.name}>
-                    <input required className="form-input" />
+                    <input
+                      required
+                      minLength={2}
+                      value={form.name}
+                      onChange={onChange('name')}
+                      className="form-input"
+                    />
                   </Field>
                   <Field label={t.contact.email}>
-                    <input required type="email" className="form-input" />
+                    <input
+                      required
+                      type="email"
+                      value={form.email}
+                      onChange={onChange('email')}
+                      className="form-input"
+                    />
                   </Field>
                 </div>
                 <Field label={t.contact.subject}>
-                  <input required className="form-input" />
+                  <input
+                    required
+                    minLength={2}
+                    value={form.subject}
+                    onChange={onChange('subject')}
+                    className="form-input"
+                  />
                 </Field>
                 <Field label={t.contact.message}>
-                  <textarea required rows={5} className="form-input resize-none" />
+                  <textarea
+                    required
+                    minLength={5}
+                    rows={5}
+                    value={form.message}
+                    onChange={onChange('message')}
+                    className="form-input resize-none"
+                  />
                 </Field>
-                <button type="submit" className="btn-gold w-full">
-                  {t.contact.send}
+
+                {mutation.isError && (
+                  <p className="flex items-center gap-2 text-coral text-sm">
+                    <AlertCircle size={14} />
+                    {t.contact.error}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={mutation.isPending}
+                  className="btn-gold w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {mutation.isPending ? t.contact.sending : t.contact.send}
                 </button>
               </>
             )}

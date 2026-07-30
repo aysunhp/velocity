@@ -7,6 +7,7 @@ import type {
   Car,
   CarsQuery,
   Category,
+  ContactMessage,
   Faq,
   PaginationMeta,
   Review,
@@ -82,6 +83,12 @@ export const blogApi = {
 // ─── FAQs ──────────────────────────────────────────────
 export const faqsApi = {
   list: () => unwrap<Faq[]>(client.get('/faqs')),
+};
+
+// ─── Contact ───────────────────────────────────────────
+export const contactApi = {
+  send: (payload: ContactMessage) =>
+    unwrap<{ delivered: true }>(client.post('/contact', payload)),
 };
 
 export { client as apiClient };
