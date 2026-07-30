@@ -2,6 +2,8 @@
 
 Premium, futuristic full-stack rent-a-car platform. Monorepo with a Node.js/Express backend and a Next.js 14 + TypeScript frontend, designed around a swappable repository layer so you can ship today on mock data and flip a single env var to go live on MongoDB.
 
+> **Deployment note.** The frontend ships its own copy of the API as Next.js route handlers in `frontend/app/api`, reading the same seed data from `frontend/lib/server/data.ts`. The deployed site is therefore self-contained: no external API host, no cold starts, no CORS. The Express backend in `backend/` remains the path to a real MongoDB-backed API — see [Using the Express backend](#using-the-express-backend).
+
 ![tech](https://img.shields.io/badge/Next.js-14-black) ![tech](https://img.shields.io/badge/TypeScript-5-blue) ![tech](https://img.shields.io/badge/Express-4-green) ![tech](https://img.shields.io/badge/MongoDB-Ready-success)
 
 ## Highlights
@@ -22,20 +24,13 @@ Premium, futuristic full-stack rent-a-car platform. Monorepo with a Node.js/Expr
 ## Quick Start
 
 ```bash
-# Backend
-cd backend
-cp .env.example .env
-npm install
-npm run dev          # http://localhost:5000  (mock data, instant)
-
-# Frontend — second terminal
 cd frontend
 cp .env.local.example .env.local
 npm install
 npm run dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The frontend talks to the backend via `NEXT_PUBLIC_API_URL`.
+Open [http://localhost:3000](http://localhost:3000). That is the whole app — the route handlers in `app/api` serve the data, so the Express backend is not required to run.
 
 ## Project Structure
 
@@ -56,14 +51,17 @@ velocity/
 │   └── server.js
 └── frontend/
     ├── app/                  # Home + /cars, /cars/[slug], /about, /services,
-    │                         # /contact, /blog, /blog/[slug], not-found, sitemap, robots
+    │   │                     # /contact, not-found, sitemap, robots
+    │   └── api/              # route handlers mirroring the Express endpoints
     ├── components/
     │   ├── layout/           # Navbar, Footer, FloatingButtons, CookieBanner
     │   ├── home/             # 11 sections
     │   ├── cars/             # CarCard, Filters, Gallery, BookingForm
     │   └── ui/               # Container, ScrollReveal, SectionHeading, Counter, Skeleton
     ├── hooks/                # useApi (TanStack Query wrappers)
-    ├── lib/                  # api client, constants, utils, queryClient
+    ├── lib/
+    │   ├── server/           # data.ts (seed data), store.ts (query layer), response.ts
+    │   └── …                 # api client, constants, utils, queryClient
     └── types/
 ```
 
@@ -87,6 +85,16 @@ velocity/
 | GET · POST | `/api/faqs` | list / create |
 
 All list endpoints return `{ success, data, meta: { total, page, limit, totalPages } }`.
+
+The read endpoints and `POST /api/bookings` are implemented twice, against one shared response contract: once in `backend/` (Express) and once in `frontend/app/api` (route handlers). The admin write endpoints exist only in the Express backend.
+
+`POST /api/bookings` in the route-handler version validates, prices the booking and logs it to the function log — it does not persist or email. Use the Express backend for that.
+
+## Using the Express backend
+
+The frontend defaults to its own route handlers. To run it against `backend/` instead, point `API_BASE` in `frontend/lib/constants.ts` at that host (e.g. `http://localhost:5000`), and add the frontend's origin to `CORS_ORIGIN` in `backend/.env`.
+
+It is read from a constant rather than `NEXT_PUBLIC_API_URL` on purpose: a stale value in a hosting dashboard would silently point the entire deployed site at a dead backend, which is exactly the failure this layout removes.
 
 ## Switching Mock → MongoDB
 
@@ -123,7 +131,6 @@ That's it — no controller, service or route changes required. The repository f
 
 | Var | Default | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | `http://localhost:5000/api` | Express base URL |
 | `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | used for sitemap/robots/canonical |
 | `NEXT_PUBLIC_WHATSAPP` | `994501112233` | floating WhatsApp number (no `+`) |
 | `NEXT_PUBLIC_PHONE` | `+994501112233` | floating call CTA |
@@ -132,21 +139,22 @@ That's it — no controller, service or route changes required. The repository f
 ## Production Build
 
 ```bash
-# Backend
-cd backend && NODE_ENV=production node server.js
-
-# Frontend
 cd frontend
 npm run build
 npm start                    # http://localhost:3000
 ```
 
+```bash
+# Optional — the standalone Express API
+cd backend && NODE_ENV=production node server.js
+```
+
 ## Deployment Notes
 
-- **Frontend** → Vercel / Netlify (Next.js 14, App Router). Set `NEXT_PUBLIC_*` env vars.
-- **Backend** → Render / Railway / Fly.io / a plain Node host. Set the env vars from the table above; switch `DATA_SOURCE=mongo` and provide a `MONGO_URI`.
+- **Frontend** → Vercel / Netlify (Next.js 14, App Router). Deploys on its own; nothing to configure beyond the optional `NEXT_PUBLIC_*` contact vars. Do **not** set `NEXT_PUBLIC_API_URL` — it is unused, and most of `/api` is prerendered at build time.
+- **Backend** (only if you want a real datastore) → Render / Railway / Fly.io / a plain Node host. Set the env vars from the table above; switch `DATA_SOURCE=mongo` and provide a `MONGO_URI`. On free tiers that idle out, expect a cold start of a minute or more on the first request.
 - **Database** → MongoDB Atlas free tier works fine. Run `npm run seed:mongo` once after first deploy.
-- Configure `CORS_ORIGINS` to your deployed frontend domain.
+- Configure `CORS_ORIGIN` to your deployed frontend domain.
 
 ## Scripts
 

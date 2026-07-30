@@ -25,5 +25,10 @@ export const NAV_LINKS = [
 export const LOCALES = ['az', 'en', 'ru'] as const;
 export const DEFAULT_LOCALE = 'az';
 
-export const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || 'https://velocity-backend-jqiu.onrender.com';
+/**
+ * Empty string = same origin, so requests hit the route handlers in `app/api`.
+ * Deliberately not read from NEXT_PUBLIC_API_URL: a stale value left in the
+ * host's dashboard would silently point the whole site at a dead backend.
+ * To run against the standalone Express API instead, set this to its URL.
+ */
+export const API_BASE = '';

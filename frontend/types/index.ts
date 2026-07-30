@@ -31,6 +31,7 @@ export interface Category {
   description?: string;
   icon?: string;
   image?: string;
+  order?: number;
   carCount?: number;
 }
 
@@ -111,6 +112,8 @@ export interface BlogPost {
   author: string;
   tags: string[];
   publishedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Faq {
