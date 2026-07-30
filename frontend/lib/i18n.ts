@@ -258,6 +258,90 @@ export const translations = {
       sent: 'Mesaj göndərildi',
       sentDesc: 'Konsyerjimiz tezliklə cavab verəcək. Təcili məsələlər üçün birbaşa zəng edin.',
     },
+    privacy: {
+      eyebrow: 'Hüquqi',
+      title1: 'Məxfilik',
+      title2: 'siyasəti',
+      updated: 'Son yenilənmə: 30 iyul 2026',
+      intro:
+        'Bu sənəd Velocity saytının hansı məlumatları topladığını, onlarla nə etdiyini və nə etmədiyini izah edir. Qısa cavab: yalnız formalarda özünüzün yazdığını toplayırıq, onu sizə cavab vermək üçün emailimizə göndəririk və sizi izləmirik.',
+      sections: [
+        {
+          title: 'Hansı məlumatları toplayırıq',
+          body: [
+            'Yalnız formaları özünüz doldurduqda. Əlaqə formasında: ad, email, mövzu və mesaj. Rezervasiya formasında: ad, email, telefon, təhvil alma və qaytarma yeri, tarixlər və istəyə bağlı qeyd.',
+            'Formaları doldurmadan sayta baxmaq üçün heç bir məlumat vermək lazım deyil. Qeydiyyat, hesab və ya parol yoxdur.',
+          ],
+        },
+        {
+          title: 'Bu məlumatları necə istifadə edirik',
+          body: [
+            'Yalnız müraciətinizə cavab vermək və icarəni təşkil etmək üçün. Göndərdiyiniz məlumat konsyerj emailimizə çatır və cavab məktubu birbaşa sizin ünvanınıza gedir.',
+            'Bu məlumatları satmırıq, reklam üçün istifadə etmirik və marketinq siyahılarına əlavə etmirik.',
+          ],
+        },
+        {
+          title: 'Məlumat necə saxlanılır',
+          body: [
+            'Saytın verilənlər bazası yoxdur. Müraciətiniz bizə email kimi gəlir və yeganə qeyd həmin məktubdur — poçt qutumuzda qalır.',
+            'Məktubun silinməsini istəsəniz, aşağıdaki ünvana yazın; sorğunuzu yerinə yetirəcəyik.',
+          ],
+        },
+        {
+          title: 'Cookie-lər və brauzer yaddaşı',
+          body: [
+            'Sayt cookie qoymur. Bunun yerinə brauzerinizin lokal yaddaşında üç şey saxlanılır: seçdiyiniz dil, cookie bildirişinə verdiyiniz cavab və ana səhifədə başladığınız rezervasiya qaralaması.',
+            'Bu üç məlumat yalnız sizin cihazınızda qalır — serverimizə göndərilmir və oradan oxunmur. Brauzerin yaddaşını təmizləməklə hər üçünü silə bilərsiniz.',
+          ],
+        },
+        {
+          title: 'İzləmə və analitika',
+          body: [
+            'Heç biri yoxdur. Saytda analitika sistemi, reklam pikseli, sosial şəbəkə izləyicisi və ya üçüncü tərəf izləmə skripti quraşdırılmayıb. Sizin səhifələr arasında hərəkətinizi izləmirik və profil qurmuruq.',
+          ],
+        },
+        {
+          title: 'Üçüncü tərəf xidmətləri',
+          body: [
+            'Saytı işlək saxlamaq üçün bir neçə xarici xidmətdən istifadə olunur və onlar öz növbəsində müəyyən texniki məlumat görür:',
+            'Netlify — saytı yerləşdirir. Server jurnallarında IP ünvanınız və brauzer məlumatınız qeyd olunur.',
+            'Google (Gmail) — form müraciətlərinizi bizə email kimi çatdırır, yəni yazdığınız məlumat həmin məktubun içindədir.',
+            'Unsplash — avtomobil fotoları oradan yüklənir, bu zaman IP ünvanınız Unsplash-ə görünür.',
+            'OpenStreetMap — əlaqə səhifəsindəki xəritə oradan gəlir, bu zaman IP ünvanınız OpenStreetMap-a görünür.',
+          ],
+        },
+        {
+          title: 'Sizin hüquqlarınız',
+          body: [
+            'Bizə göndərdiyiniz məlumatın kopyasını istəmək, düzəldilməsini və ya silinməsini tələb etmək hüququnuz var. Aşağıdaki email ünvanına yazın — məktubunuzu ağlabatan müddətdə cavablandıracağıq.',
+          ],
+        },
+        {
+          title: 'Uşaqlar',
+          body: [
+            'Sayt uşaqlara ünvanlanmayıb və biz bilərəkdən 18 yaşdan kiçik şəxslərdən məlumat toplamırıq.',
+          ],
+        },
+        {
+          title: 'Dəyişikliklər',
+          body: [
+            'Bu siyasət yeniləndikdə yuxarıdaki tarix dəyişəcək. Əhəmiyyətli dəyişiklik olarsa, saytda görünən şəkildə bildiriləcək.',
+          ],
+        },
+      ],
+      contactTitle: 'Bizimlə əlaqə',
+      contactBody:
+        'Məxfilik ilə bağlı hər hansı sualınız və ya məlumatınızın silinməsi tələbiniz varsa:',
+      disclaimer:
+        'Qeyd: bu sənəd saytın texniki olaraq nə etdiyini dürüst şəkildə təsvir edir, lakin hüquqi məsləhət deyil. Kommersiya fəaliyyətinə başlamazdan əvvəl hüquqşünasla nəzərdən keçirin və şirkət adı, qeydiyyat və rəsmi ünvan məlumatlarını əlavə edin.',
+    },
+    cookies: {
+      title: 'Brauzer yaddaşı',
+      desc: 'Bu sayt cookie qoymur və sizi izləmir. Brauzerinizdə yalnız dil seçiminiz və bu bildirişə cavabınız saxlanılır. Ətraflı: ',
+      policy: 'məxfilik siyasəti',
+      ok: 'Anladım',
+      dismiss: 'Bağla',
+    },
     footer: {
       tagline: 'Premium lüks avtomobil icarəsi. Seçilmiş park. Konsyerj səviyyəsində xidmət.',
       company: 'Şirkət',
@@ -528,6 +612,90 @@ export const translations = {
       sent: 'Message sent',
       sentDesc: 'Our concierge will reply shortly. For urgent matters, call directly.',
     },
+    privacy: {
+      eyebrow: 'Legal',
+      title1: 'Privacy',
+      title2: 'policy',
+      updated: 'Last updated: 30 July 2026',
+      intro:
+        'This page explains what the Velocity site collects, what we do with it, and what we do not do. The short version: we collect only what you type into a form, we email it to ourselves so we can reply, and we do not track you.',
+      sections: [
+        {
+          title: 'What we collect',
+          body: [
+            'Only what you submit yourself. The contact form asks for your name, email, subject and message. The booking form asks for your name, email, phone, pickup and return locations, dates, and an optional note.',
+            'Browsing the site without submitting a form requires giving us nothing. There are no accounts, sign-ups or passwords.',
+          ],
+        },
+        {
+          title: 'How we use it',
+          body: [
+            'Only to answer your enquiry and arrange the rental. What you submit arrives in our concierge mailbox, and our reply goes straight back to your address.',
+            'We do not sell it, use it for advertising, or add you to a marketing list.',
+          ],
+        },
+        {
+          title: 'How it is stored',
+          body: [
+            'The site has no database. Your submission reaches us as an email, and that email is the only record — it sits in our mailbox.',
+            'If you would like it deleted, write to the address below and we will do so.',
+          ],
+        },
+        {
+          title: 'Cookies and browser storage',
+          body: [
+            'This site sets no cookies. Instead, three things are kept in your browser\'s local storage: your chosen language, your answer to the cookie notice, and any reservation draft you started on the home page.',
+            'All three stay on your device — they are never sent to or read by our server. Clearing your browser storage removes them.',
+          ],
+        },
+        {
+          title: 'Tracking and analytics',
+          body: [
+            'There is none. The site carries no analytics package, advertising pixel, social network tracker or third-party tracking script. We do not follow you between pages or build a profile of you.',
+          ],
+        },
+        {
+          title: 'Third-party services',
+          body: [
+            'A few external services keep the site running, and each sees some technical information in the process:',
+            'Netlify — hosts the site. Its server logs record your IP address and browser details.',
+            'Google (Gmail) — delivers your form submission to us as email, so what you typed travels inside that message.',
+            'Unsplash — serves the car photography, which reveals your IP address to Unsplash.',
+            'OpenStreetMap — serves the map on the contact page, which reveals your IP address to OpenStreetMap.',
+          ],
+        },
+        {
+          title: 'Your rights',
+          body: [
+            'You may ask for a copy of what you sent us, ask us to correct it, or ask us to delete it. Write to the email address below and we will respond within a reasonable time.',
+          ],
+        },
+        {
+          title: 'Children',
+          body: [
+            'This site is not directed at children, and we do not knowingly collect information from anyone under 18.',
+          ],
+        },
+        {
+          title: 'Changes',
+          body: [
+            'If this policy is updated, the date above changes. Anything significant will be flagged visibly on the site.',
+          ],
+        },
+      ],
+      contactTitle: 'Contact us',
+      contactBody:
+        'For any privacy question, or to have your information deleted:',
+      disclaimer:
+        'Note: this document honestly describes what the site technically does, but it is not legal advice. Have a lawyer review it before commercial use, and add your company name, registration and registered address.',
+    },
+    cookies: {
+      title: 'Browser storage',
+      desc: 'This site sets no cookies and does not track you. Your browser only keeps your language choice and this dismissal. More in our ',
+      policy: 'privacy policy',
+      ok: 'Got it',
+      dismiss: 'Dismiss',
+    },
     footer: {
       tagline: 'Premium luxury car rentals. Hand-picked fleet. Concierge-grade service.',
       company: 'Company',
@@ -797,6 +965,90 @@ export const translations = {
       error: 'Не удалось отправить сообщение. Позвоните нам или напишите в WhatsApp.',
       sent: 'Сообщение отправлено',
       sentDesc: 'Консьерж скоро ответит. По срочным вопросам — звоните напрямую.',
+    },
+    privacy: {
+      eyebrow: 'Юридическое',
+      title1: 'Политика',
+      title2: 'конфиденциальности',
+      updated: 'Последнее обновление: 30 июля 2026',
+      intro:
+        'Эта страница объясняет, какие данные собирает сайт Velocity, что мы с ними делаем и чего не делаем. Коротко: мы собираем только то, что вы сами вводите в форму, отправляем это себе на почту, чтобы ответить, и не отслеживаем вас.',
+      sections: [
+        {
+          title: 'Какие данные мы собираем',
+          body: [
+            'Только то, что вы отправляете сами. Форма связи запрашивает имя, email, тему и сообщение. Форма бронирования — имя, email, телефон, места получения и возврата, даты и необязательный комментарий.',
+            'Чтобы просто просматривать сайт, ничего сообщать не нужно. Регистрации, аккаунтов и паролей нет.',
+          ],
+        },
+        {
+          title: 'Как мы их используем',
+          body: [
+            'Только чтобы ответить на ваш запрос и организовать аренду. Отправленное вами приходит в наш почтовый ящик, а ответ уходит напрямую на ваш адрес.',
+            'Мы не продаём эти данные, не используем их для рекламы и не добавляем вас в рассылки.',
+          ],
+        },
+        {
+          title: 'Как данные хранятся',
+          body: [
+            'У сайта нет базы данных. Ваш запрос приходит к нам письмом, и это письмо — единственная запись; оно остаётся в нашем почтовом ящике.',
+            'Если хотите, чтобы мы его удалили, напишите на адрес ниже — мы это сделаем.',
+          ],
+        },
+        {
+          title: 'Cookie и хранилище браузера',
+          body: [
+            'Сайт не устанавливает cookie. Вместо этого в локальном хранилище браузера сохраняются три вещи: выбранный язык, ваш ответ на уведомление о cookie и черновик бронирования, начатый на главной странице.',
+            'Всё это остаётся на вашем устройстве — не отправляется на наш сервер и не читается им. Очистка хранилища браузера удаляет их.',
+          ],
+        },
+        {
+          title: 'Отслеживание и аналитика',
+          body: [
+            'Их нет. На сайте не установлены системы аналитики, рекламные пиксели, трекеры соцсетей или сторонние скрипты отслеживания. Мы не следим за вашими переходами и не составляем профиль.',
+          ],
+        },
+        {
+          title: 'Сторонние сервисы',
+          body: [
+            'Несколько внешних сервисов обеспечивают работу сайта, и каждый из них видит определённую техническую информацию:',
+            'Netlify — размещает сайт. В его серверных журналах фиксируется ваш IP-адрес и данные браузера.',
+            'Google (Gmail) — доставляет нам вашу заявку письмом, поэтому введённые вами данные находятся внутри этого письма.',
+            'Unsplash — отдаёт фотографии автомобилей, при этом ваш IP-адрес становится виден Unsplash.',
+            'OpenStreetMap — отдаёт карту на странице контактов, при этом ваш IP-адрес становится виден OpenStreetMap.',
+          ],
+        },
+        {
+          title: 'Ваши права',
+          body: [
+            'Вы можете запросить копию отправленных нам данных, попросить их исправить или удалить. Напишите на адрес ниже — мы ответим в разумный срок.',
+          ],
+        },
+        {
+          title: 'Дети',
+          body: [
+            'Сайт не предназначен для детей, и мы сознательно не собираем данные лиц младше 18 лет.',
+          ],
+        },
+        {
+          title: 'Изменения',
+          body: [
+            'При обновлении политики дата выше изменится. О существенных изменениях мы сообщим на сайте заметным образом.',
+          ],
+        },
+      ],
+      contactTitle: 'Связаться с нами',
+      contactBody:
+        'По любым вопросам конфиденциальности или для удаления ваших данных:',
+      disclaimer:
+        'Примечание: документ честно описывает, что сайт делает технически, но не является юридической консультацией. Перед коммерческим использованием покажите его юристу и добавьте название компании, регистрационные данные и юридический адрес.',
+    },
+    cookies: {
+      title: 'Хранилище браузера',
+      desc: 'Сайт не устанавливает cookie и не отслеживает вас. В браузере сохраняются только выбранный язык и это подтверждение. Подробнее — ',
+      policy: 'политика конфиденциальности',
+      ok: 'Понятно',
+      dismiss: 'Закрыть',
     },
     footer: {
       tagline: 'Премиум аренда люксовых авто. Отборный парк. Консьерж-сервис.',

@@ -51,7 +51,7 @@ velocity/
 │   └── server.js
 └── frontend/
     ├── app/                  # Home + /cars, /cars/[slug], /about, /services,
-    │   │                     # /contact, not-found, sitemap, robots
+    │   │                     # /contact, /privacy, not-found, sitemap, robots
     │   └── api/              # route handlers mirroring the Express endpoints
     ├── components/
     │   ├── layout/           # Navbar, Footer, FloatingButtons, CookieBanner
